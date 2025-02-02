@@ -2,8 +2,8 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 
-st.set_page_config(page_title="Jailbreak Prompt Database", layout="wide")
-st.title("Public Crowd-Sourced Jailbreak Prompt Database")
+st.set_page_config(page_title="LLM Breakout DB", layout="wide")
+st.title("LLM Breakout DB: Public Crowd-Sourced Jailbreak Prompt Database")
 
 # --- Function to load data from public URL (cached) ---
 @st.cache_data(show_spinner=False)
