@@ -1,0 +1,46 @@
+# macOS system files
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+*.venv
+*.env
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Logs and temporary files
+*.log
+*.out
+*.err
+*.swp
+*.swo
+*.swn
+
+# Streamlit cache and artifacts
+.streamlit/
+logs/
+db.sqlite3
+.stcache/
+.stcache/
+
+# VSCode and JetBrains (PyCharm) specific files
+.vscode/
+.idea/
+*.iml
+
+# Git-related
+*.orig
+
+# Secrets or environment variables
+.env
+*.env.local
+.envrc
+secrets.toml

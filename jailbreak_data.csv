@@ -1,0 +1,51 @@
+ID,Prompt,LLM,Effectiveness Score,Reproducibility Score,Submission Date,Verification Status,Additional Notes,Submitter,Responsible Disclosure,Evidence
+JB-2025-0001,Dummy jailbreak prompt 1,"GPT-4.5 (OpenAI)",4,5,2025-01-01,Verified,Note for prompt 1,alice,Yes,N/A
+JB-2025-0002,Dummy jailbreak prompt 2,"Claude 3 (Anthropic)",3,4,2025-01-02,Unverified,Note for prompt 2,bob,No,N/A
+JB-2025-0003,Dummy jailbreak prompt 3,"Gemini 2.0 (Google)",5,4,2025-01-03,Verified,Note for prompt 3,carol,Yes,N/A
+JB-2025-0004,Dummy jailbreak prompt 4,"GPT-4.5 (OpenAI)",4,4,2025-01-04,Verified,Note for prompt 4,alice,Yes,N/A
+JB-2025-0005,Dummy jailbreak prompt 5,"Claude 3 (Anthropic)",2,3,2025-01-05,Deprecated,Note for prompt 5,dave,No,N/A
+JB-2025-0006,Dummy jailbreak prompt 6,"Gemini 2.0 (Google)",3,5,2025-01-06,Verified,Note for prompt 6,carol,Yes,N/A
+JB-2025-0007,Dummy jailbreak prompt 7,"GPT-4.5 (OpenAI)",5,5,2025-01-07,Verified,Note for prompt 7,alice,Yes,N/A
+JB-2025-0008,Dummy jailbreak prompt 8,"Claude 3 (Anthropic)",4,3,2025-01-08,Unverified,Note for prompt 8,bob,No,N/A
+JB-2025-0009,Dummy jailbreak prompt 9,"Gemini 2.0 (Google)",4,4,2025-01-09,Verified,Note for prompt 9,carol,Yes,N/A
+JB-2025-0010,Dummy jailbreak prompt 10,"GPT-4.5 (OpenAI)",3,3,2025-01-10,Verified,Note for prompt 10,dave,No,N/A
+JB-2025-0011,Dummy jailbreak prompt 11,"Claude 3 (Anthropic)",5,4,2025-01-11,Verified,Note for prompt 11,alice,Yes,N/A
+JB-2025-0012,Dummy jailbreak prompt 12,"Gemini 2.0 (Google)",4,3,2025-01-12,Unverified,Note for prompt 12,bob,No,N/A
+JB-2025-0013,Dummy jailbreak prompt 13,"GPT-4.5 (OpenAI)",3,4,2025-01-13,Verified,Note for prompt 13,carol,Yes,N/A
+JB-2025-0014,Dummy jailbreak prompt 14,"Claude 3 (Anthropic)",4,5,2025-01-14,Verified,Note for prompt 14,dave,Yes,N/A
+JB-2025-0015,Dummy jailbreak prompt 15,"Gemini 2.0 (Google)",2,2,2025-01-15,Deprecated,Note for prompt 15,alice,No,N/A
+JB-2025-0016,Dummy jailbreak prompt 16,"GPT-4.5 (OpenAI)",5,5,2025-01-16,Verified,Note for prompt 16,bob,Yes,N/A
+JB-2025-0017,Dummy jailbreak prompt 17,"Claude 3 (Anthropic)",4,4,2025-01-17,Unverified,Note for prompt 17,carol,No,N/A
+JB-2025-0018,Dummy jailbreak prompt 18,"Gemini 2.0 (Google)",3,4,2025-01-18,Verified,Note for prompt 18,dave,Yes,N/A
+JB-2025-0019,Dummy jailbreak prompt 19,"GPT-4.5 (OpenAI)",4,3,2025-01-19,Verified,Note for prompt 19,alice,Yes,N/A
+JB-2025-0020,Dummy jailbreak prompt 20,"Claude 3 (Anthropic)",3,3,2025-01-20,Unverified,Note for prompt 20,bob,No,N/A
+JB-2025-0021,Dummy jailbreak prompt 21,"Gemini 2.0 (Google)",5,4,2025-01-21,Verified,Note for prompt 21,carol,Yes,N/A
+JB-2025-0022,Dummy jailbreak prompt 22,"GPT-4.5 (OpenAI)",4,4,2025-01-22,Verified,Note for prompt 22,dave,Yes,N/A
+JB-2025-0023,Dummy jailbreak prompt 23,"Claude 3 (Anthropic)",3,5,2025-01-23,Unverified,Note for prompt 23,alice,No,N/A
+JB-2025-0024,Dummy jailbreak prompt 24,"Gemini 2.0 (Google)",4,5,2025-01-24,Verified,Note for prompt 24,bob,Yes,N/A
+JB-2025-0025,Dummy jailbreak prompt 25,"GPT-4.5 (OpenAI)",5,3,2025-01-25,Verified,Note for prompt 25,carol,Yes,N/A
+JB-2025-0026,Dummy jailbreak prompt 26,"Claude 3 (Anthropic)",2,3,2025-01-26,Deprecated,Note for prompt 26,dave,No,N/A
+JB-2025-0027,Dummy jailbreak prompt 27,"Gemini 2.0 (Google)",3,4,2025-01-27,Verified,Note for prompt 27,alice,Yes,N/A
+JB-2025-0028,Dummy jailbreak prompt 28,"GPT-4.5 (OpenAI)",4,5,2025-01-28,Verified,Note for prompt 28,bob,Yes,N/A
+JB-2025-0029,Dummy jailbreak prompt 29,"Claude 3 (Anthropic)",5,5,2025-01-29,Verified,Note for prompt 29,carol,Yes,N/A
+JB-2025-0030,Dummy jailbreak prompt 30,"Gemini 2.0 (Google)",3,3,2025-01-30,Unverified,Note for prompt 30,dave,No,N/A
+JB-2025-0031,Dummy jailbreak prompt 31,"GPT-4.5 (OpenAI)",4,4,2025-01-31,Verified,Note for prompt 31,alice,Yes,N/A
+JB-2025-0032,Dummy jailbreak prompt 32,"Claude 3 (Anthropic)",3,4,2025-02-01,Verified,Note for prompt 32,bob,Yes,N/A
+JB-2025-0033,Dummy jailbreak prompt 33,"Gemini 2.0 (Google)",5,3,2025-02-02,Unverified,Note for prompt 33,carol,No,N/A
+JB-2025-0034,Dummy jailbreak prompt 34,"GPT-4.5 (OpenAI)",4,5,2025-02-03,Verified,Note for prompt 34,dave,Yes,N/A
+JB-2025-0035,Dummy jailbreak prompt 35,"Claude 3 (Anthropic)",2,2,2025-02-04,Deprecated,Note for prompt 35,alice,No,N/A
+JB-2025-0036,Dummy jailbreak prompt 36,"Gemini 2.0 (Google)",5,5,2025-02-05,Verified,Note for prompt 36,bob,Yes,N/A
+JB-2025-0037,Dummy jailbreak prompt 37,"GPT-4.5 (OpenAI)",4,4,2025-02-06,Unverified,Note for prompt 37,carol,No,N/A
+JB-2025-0038,Dummy jailbreak prompt 38,"Claude 3 (Anthropic)",3,4,2025-02-07,Verified,Note for prompt 38,dave,Yes,N/A
+JB-2025-0039,Dummy jailbreak prompt 39,"Gemini 2.0 (Google)",4,3,2025-02-08,Verified,Note for prompt 39,alice,Yes,N/A
+JB-2025-0040,Dummy jailbreak prompt 40,"GPT-4.5 (OpenAI)",3,3,2025-02-09,Unverified,Note for prompt 40,bob,No,N/A
+JB-2025-0041,Dummy jailbreak prompt 41,"Claude 3 (Anthropic)",5,4,2025-02-10,Verified,Note for prompt 41,carol,Yes,N/A
+JB-2025-0042,Dummy jailbreak prompt 42,"Gemini 2.0 (Google)",4,4,2025-02-11,Verified,Note for prompt 42,dave,Yes,N/A
+JB-2025-0043,Dummy jailbreak prompt 43,"GPT-4.5 (OpenAI)",3,5,2025-02-12,Unverified,Note for prompt 43,alice,No,N/A
+JB-2025-0044,Dummy jailbreak prompt 44,"Claude 3 (Anthropic)",4,5,2025-02-13,Verified,Note for prompt 44,bob,Yes,N/A
+JB-2025-0045,Dummy jailbreak prompt 45,"Gemini 2.0 (Google)",5,3,2025-02-14,Verified,Note for prompt 45,carol,Yes,N/A
+JB-2025-0046,Dummy jailbreak prompt 46,"GPT-4.5 (OpenAI)",2,3,2025-02-15,Deprecated,Note for prompt 46,dave,No,N/A
+JB-2025-0047,Dummy jailbreak prompt 47,"Claude 3 (Anthropic)",3,4,2025-02-16,Verified,Note for prompt 47,alice,Yes,N/A
+JB-2025-0048,Dummy jailbreak prompt 48,"Gemini 2.0 (Google)",4,5,2025-02-17,Verified,Note for prompt 48,bob,Yes,N/A
+JB-2025-0049,Dummy jailbreak prompt 49,"GPT-4.5 (OpenAI)",5,5,2025-02-18,Verified,Note for prompt 49,carol,Yes,N/A
+JB-2025-0050,Dummy jailbreak prompt 50,"Claude 3 (Anthropic)",3,3,2025-02-19,Unverified,Note for prompt 50,dave,No,N/A
