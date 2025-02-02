@@ -4,23 +4,26 @@ import pandas as pd
 from datetime import datetime
 import config  # Import configuration file
 
-# --- Set the page configuration as the very first Streamlit command ---
+# --- Set page config as the very first Streamlit command ---
 st.set_page_config(page_title="Jailbreak Prompt Database", layout="wide")
 
 # --- Google Analytics Integration using tracking ID from config ---
 ga_tracking_id = config.GOOGLE_ANALYTICS_TRACKING_ID
+# Increase height to force the iframe to render, and wrap in a hidden div.
 components.html(
     f"""
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id={ga_tracking_id}"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){{dataLayer.push(arguments);}}
-      gtag('js', new Date());
-      gtag('config', '{ga_tracking_id}');
-    </script>
+    <div style="display:none;">
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id={ga_tracking_id}"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){{ dataLayer.push(arguments); }}
+        gtag('js', new Date());
+        gtag('config', '{ga_tracking_id}');
+      </script>
+    </div>
     """,
-    height=0,
+    height=100,
 )
 
 st.title("Public Crowd-Sourced Jailbreak Prompt Database")
@@ -68,22 +71,19 @@ tab1, tab2, tab3 = st.tabs(tabs)
 # --- Tab 1: Display Prompt Entries with dynamic height ---
 with tab1:
     st.subheader("Crowd-Sourced Jailbreak Prompt Entries")
-    # Calculate table height: 40 pixels per row, with at least 10 rows
-    row_count = max(len(df_filtered), 10)
-    table_height = row_count * 40
+    row_count = max(len(df_filtered), 10)  # at least 10 rows
+    table_height = row_count * 40         # approx 40 pixels per row
     st.dataframe(df_filtered, height=table_height, use_container_width=True)
 
 # --- Tab 2: Submitters Leaderboard ---
 with tab2:
     st.subheader("Top 5 Submitters Leaderboard")
-    # Only consider verified entries for leaderboard calculation
     df_verified = df_all[df_all["Verification Status"] == "Verified"]
     leaderboard = df_verified.groupby("Submitter").agg(
         Verified_Submissions=("ID", "count"),
         Avg_Effectiveness=("Effectiveness Score", "mean"),
         Avg_Reproducibility=("Reproducibility Score", "mean")
     ).reset_index()
-    # Score formula: verified submissions + (2 x Avg_Effectiveness) + (2 x Avg_Reproducibility)
     leaderboard["Score"] = (
         leaderboard["Verified_Submissions"] +
         2 * leaderboard["Avg_Effectiveness"] +
