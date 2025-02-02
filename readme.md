@@ -57,7 +57,7 @@ While the MVP lays the foundation, **Version 1.0 and beyond** will expand capabi
 
 🔗 **Access the MVP here:** [LLM Breakout DB](https://llm-breakout.streamlit.app/)
 
-📢 **Interested in collaborating?** Contact us to discuss research partnerships with AI alignment institutions and universities.
+📢 **Interested in collaborating?** Contact us to discuss research partnerships with AI alignment institutions and universities: https://linkedin.com/in/carloshvp
 
 Together, we can build a **safer and more transparent AI ecosystem**.
 
