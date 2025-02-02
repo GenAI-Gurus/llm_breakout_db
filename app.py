@@ -4,6 +4,9 @@ import pandas as pd
 from datetime import datetime
 import config  # Import configuration file
 
+# --- Set the page configuration as the very first Streamlit command ---
+st.set_page_config(page_title="Jailbreak Prompt Database", layout="wide")
+
 # --- Google Analytics Integration using tracking ID from config ---
 ga_tracking_id = config.GOOGLE_ANALYTICS_TRACKING_ID
 components.html(
@@ -20,7 +23,6 @@ components.html(
     height=0,
 )
 
-st.set_page_config(page_title="Jailbreak Prompt Database", layout="wide")
 st.title("Public Crowd-Sourced Jailbreak Prompt Database")
 
 # --- Function to load data from the public URL (cached) ---
