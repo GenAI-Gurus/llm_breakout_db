@@ -1,47 +1,56 @@
 import streamlit as st
+import streamlit.components.v1 as components
 import pandas as pd
 from datetime import datetime
+import config  # Import configuration file
 
-st.set_page_config(page_title="LLM Breakout DB", layout="wide")
-st.title("LLM Breakout DB: Public Crowd-Sourced Jailbreak Prompt Database")
+# --- Google Analytics Integration using tracking ID from config ---
+ga_tracking_id = config.GOOGLE_ANALYTICS_TRACKING_ID
+components.html(
+    f"""
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={ga_tracking_id}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){{dataLayer.push(arguments);}}
+      gtag('js', new Date());
+      gtag('config', '{ga_tracking_id}');
+    </script>
+    """,
+    height=0,
+)
 
-# --- Function to load data from public URL (cached) ---
+st.set_page_config(page_title="Jailbreak Prompt Database", layout="wide")
+st.title("Public Crowd-Sourced Jailbreak Prompt Database")
+
+# --- Function to load data from the public URL (cached) ---
 @st.cache_data(show_spinner=False)
 def load_data():
-    # Replace with your actual public URL of the CSV file hosted in Azure Blob Storage
-    csv_url = "https://llmbreakout.blob.core.windows.net/appdata/jailbreak_data.csv"
-    df = pd.read_csv(csv_url)
+    df = pd.read_csv(config.CSV_URL)
     return df
 
 # --- Load the CSV data from the public URL ---
 df_all = load_data()
 
-# --- Sidebar: User Role, Filters, Search, and Sorting ---
-st.sidebar.header("User Options")
+# --- Sidebar: Filters, Search, and Sorting Options ---
+st.sidebar.header("Filter Options")
 
-# Simulated user role selector
-role = st.sidebar.selectbox("Select your role", ["Anonymous", "Registered", "Moderator"])
-
-# Filtering options
 llm_options = df_all["LLM"].unique().tolist()
 selected_llms = st.sidebar.multiselect("Select LLM(s)", options=llm_options, default=llm_options)
 
 status_options = df_all["Verification Status"].unique().tolist()
 selected_status = st.sidebar.multiselect("Select Verification Status", options=status_options, default=status_options)
 
-# Search box for prompt text
 search_query = st.sidebar.text_input("Search Prompt Text")
 
-# Sorting options
 sort_by = st.sidebar.selectbox("Sort by", ["Submission Date", "Effectiveness Score", "Reproducibility Score"])
 
-# Apply filters
+# Apply filters to the DataFrame
 df_filtered = df_all[df_all["LLM"].isin(selected_llms)]
 df_filtered = df_filtered[df_filtered["Verification Status"].isin(selected_status)]
 if search_query:
     df_filtered = df_filtered[df_filtered["Prompt"].str.contains(search_query, case=False, na=False)]
 
-# Apply sorting
 if sort_by == "Submission Date":
     df_filtered["Submission Date"] = pd.to_datetime(df_filtered["Submission Date"], errors="coerce")
     df_filtered = df_filtered.sort_values("Submission Date", ascending=False)
@@ -50,31 +59,29 @@ elif sort_by == "Effectiveness Score":
 elif sort_by == "Reproducibility Score":
     df_filtered = df_filtered.sort_values("Reproducibility Score", ascending=False)
 
-# --- Define tabs based on user role ---
-tabs = ["Prompt Entries", "Submitters Leaderboard"]
-if role == "Moderator":
-    tabs.append("Moderation Panel")
-if role == "Registered":
-    tabs.append("Submit New Prompt")
+# --- Define the tabs (all users are anonymous) ---
+tabs = ["Prompt Entries", "Submitters Leaderboard", "Submit New Prompt"]
+tab1, tab2, tab3 = st.tabs(tabs)
 
-tab1, tab2, *extra_tabs = st.tabs(tabs)
-
-# --- Tab 1: Display Prompt Entries ---
+# --- Tab 1: Display Prompt Entries with dynamic height ---
 with tab1:
     st.subheader("Crowd-Sourced Jailbreak Prompt Entries")
-    st.dataframe(df_filtered, use_container_width=True)
+    # Calculate table height: 40 pixels per row, with at least 10 rows
+    row_count = max(len(df_filtered), 10)
+    table_height = row_count * 40
+    st.dataframe(df_filtered, height=table_height, use_container_width=True)
 
 # --- Tab 2: Submitters Leaderboard ---
 with tab2:
     st.subheader("Top 5 Submitters Leaderboard")
-    # Only consider verified entries for leaderboard scoring
+    # Only consider verified entries for leaderboard calculation
     df_verified = df_all[df_all["Verification Status"] == "Verified"]
     leaderboard = df_verified.groupby("Submitter").agg(
         Verified_Submissions=("ID", "count"),
         Avg_Effectiveness=("Effectiveness Score", "mean"),
         Avg_Reproducibility=("Reproducibility Score", "mean")
     ).reset_index()
-    # Compute score: (verified submissions) + (2 * Avg_Effectiveness) + (2 * Avg_Reproducibility)
+    # Score formula: verified submissions + (2 x Avg_Effectiveness) + (2 x Avg_Reproducibility)
     leaderboard["Score"] = (
         leaderboard["Verified_Submissions"] +
         2 * leaderboard["Avg_Effectiveness"] +
@@ -83,29 +90,12 @@ with tab2:
     leaderboard = leaderboard.sort_values("Score", ascending=False).head(5)
     st.dataframe(leaderboard, use_container_width=True)
 
-# --- Tab for Registered Users: Submit New Prompt ---
-if role == "Registered" and "Submit New Prompt" in tabs:
-    with extra_tabs[0]:
-        st.subheader("Submit a New Jailbreak Prompt")
-        st.markdown("""
-        Instead of storing new submissions in this app, please use our [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSeiaaYnkucv-re-8lf4yQzK7KWBCw3f9FAAoySsRCUFw7nBww/viewform?usp=dialog) to submit your new jailbreak prompt.
-        
-        Your submission will automatically be recorded in a Google Sheet for review.
-        """)
-        st.info("Note: The source code is public on GitHub and the CSV data is hosted in a public Azure Storage container.")
+# --- Tab 3: Submit New Prompt ---
+with tab3:
+    st.subheader("Submit a New Jailbreak Prompt")
+    st.markdown(f"""
+    To submit a new jailbreak prompt, please use our [Google Form]({config.GOOGLE_FORM_URL}).
 
-# --- Tab for Moderators: Moderation Panel ---
-if role == "Moderator" and "Moderation Panel" in tabs:
-    with extra_tabs[-1]:
-        st.subheader("Moderation Panel")
-        # Show all entries that are currently unverified
-        df_unverified = df_all[df_all["Verification Status"] == "Unverified"]
-        if df_unverified.empty:
-            st.info("No entries pending moderation.")
-        else:
-            for idx, row in df_unverified.iterrows():
-                st.markdown(f"**ID:** {row['ID']} | **Submitter:** {row['Submitter']} | **Prompt:** {row['Prompt']}")
-                if st.button(f"Mark as Verified (ID: {row['ID']})", key=f"verify_{row['ID']}"):
-                    # In a real implementation, update the database or CSV accordingly.
-                    df_all.loc[df_all["ID"] == row['ID'], "Verification Status"] = "Verified"
-                    st.experimental_rerun()
+    Your submission will be recorded in a Google Sheet for later review.
+    """)
+    st.info("Note: New submissions are stored externally for review, and both the source code and CSV data are public.")
